@@ -33,7 +33,9 @@ everything the user shares, and route to the right sub-skill when the task is sp
 | Understand the framework, or none of the above | stay here |
 
 If the user asks to build a feature and `./discovery/` exists in the project, mention
-`/mom-test-gate <feature>` once. Don't insist.
+once that a mom-test-gate evidence check is available for it (invoke it as
+`/mom-test-gate <feature>` if your tool supports slash commands, or just apply its logic
+directly from `skills/mom-test-gate/SKILL.md`). Don't insist.
 
 If the user's request clearly matches a row, invoke that skill now. Otherwise answer using
 the rules below.

@@ -48,16 +48,26 @@ the room, the agent makes you harder to fool, and the evidence compounds in plai
 
 ## Install
 
-**Clone and open.** Skills load automatically inside this repo via `.claude/skills`.
+Every skill is a plain markdown instruction file (`skills/<name>/SKILL.md`) — no
+Claude-only tool calls, nothing that only runs in one product. Three ways to use them,
+depending on what your agent supports.
+
+**1. Any agent that reads repo instructions (Codex CLI, Cursor, others).** Clone the repo
+and open it. `AGENTS.md` at the root tells the agent which `skills/<name>/SKILL.md` to
+read for a given request — no install step, no directory convention required.
 
 ```sh
-git clone https://github.com/sreshtalluri/mom-test.git && cd mom-test && claude
+git clone https://github.com/sreshtalluri/mom-test.git && cd mom-test
 ```
 
-**Use everywhere.** Symlinks each skill into `~/.claude/skills/` (bundled templates, seed data, and personas travel with them).
+**2. Claude Code, or any agent with native skill-loading.** Skills load automatically
+inside this repo via `.claude/skills`, or install them everywhere:
 
 ```sh
-./install.sh            # ./install.sh --uninstall to remove
+git clone https://github.com/sreshtalluri/mom-test.git && cd mom-test && claude   # in-repo
+./install.sh                          # everywhere: symlinks into ~/.claude/skills
+./install.sh --dir ~/.your-agent/skills   # any other directory-based skill loader
+./install.sh --uninstall              # remove
 ```
 
 **Claude Code plugin.**
@@ -67,7 +77,12 @@ git clone https://github.com/sreshtalluri/mom-test.git && cd mom-test && claude
 /plugin install mom-test@mom-test
 ```
 
-**Other agents.** Each skill is a standalone folder in the [Agent Skills](https://agentskills.io) format. Copy `skills/<name>/` (the whole folder) into `~/.codex/skills/`, `.cursor/skills/`, or `.agents/skills/`. The gate hint that `init` writes to `CLAUDE.md` is Claude Code specific; add the same two lines to `AGENTS.md` by hand for other agents.
+**3. Any chat-based tool, no repo access.** Open `skills/<name>/SKILL.md` and paste its
+contents into the conversation. It's a self-contained prompt.
+
+**The `discovery/` routing hint is agent-neutral too.** `/mom-test-memory init` writes it
+to the founder's project `AGENTS.md` (read by most agents), and additionally to
+`CLAUDE.md` if that file already exists there. It never invents a Claude-only file.
 
 ## Skills
 

@@ -54,14 +54,25 @@ if `discovery/` exists, else explain the three subcommands and offer `init`.
 3. Ask one question: **"Keep `discovery/` tracked in git? It will contain real names and
    quotes. [Y/n]"** On `n`, append `discovery/` to `./.gitignore` (create if missing; skip
    if the line is present).
-4. Offer: **"Add a two-line hint to this project's CLAUDE.md so the agent suggests
-   /mom-test-gate before building features? [Y/n]"** On yes, create `CLAUDE.md` if
-   missing and append, skipping if the marker line is already present:
+4. Offer: **"Add a routing hint so your coding agent checks `discovery/` before building
+   features? [Y/n]"** On yes, write this agent-neutral hint to **`AGENTS.md`** (create if
+   missing; skip if the marker line is present) — `AGENTS.md` is the cross-tool
+   convention that Claude Code, Codex CLI, Cursor, and others read as repo instructions,
+   so this works regardless of which agent the founder is using. Copy the block below
+   verbatim, word for word — don't paraphrase it:
 
    ```
    <!-- mom-test -->
-   `discovery/` holds customer evidence. Before building a feature, suggest `/mom-test-gate <feature>` to check the evidence behind it.
+   `discovery/` holds customer-discovery evidence for this project (see discovery/README.md).
+   Before building a feature, check `discovery/assumptions.md` for the evidence behind it:
+   how many real conversations support it and at what evidence rung (8+ = problem is real,
+   16+ = solution is wanted). If a mom-test-gate skill is available, use it; otherwise reason
+   about it directly from `discovery/assumptions.md` and `discovery/interviews/`.
    ```
+
+   Also append the same block to **`CLAUDE.md`**, but only if `CLAUDE.md` already exists
+   in the project (its presence signals a Claude Code user; never create it from
+   scratch — `AGENTS.md` is the one guaranteed to help everyone).
 5. Print the folder tree and, if `--example`, three things to try:
    `/mom-test-memory status` · `/mom-test-gate build one-click deposit charging` ·
    `/mom-test-prep derm office manager, call Thursday`.
@@ -110,7 +121,7 @@ Next: <one sentence: which assumption to test with whom>
 
 ## Guardrails
 
-- Never write outside `./discovery/`, `./.gitignore`, and `./CLAUDE.md`.
+- Never write outside `./discovery/`, `./.gitignore`, `./AGENTS.md`, and `./CLAUDE.md`.
 - Never put a person's name in a filename.
 - If the user pastes roleplay output and asks to record it, refuse: practice scores go to
   `practice/scores.md` via `mom-test-roleplay`; roleplay never becomes an interview.
