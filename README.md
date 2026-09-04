@@ -118,6 +118,15 @@ Rules that keep it honest: assumption IDs never change; evidence lives only in i
 
 Copy the closest file in `skills/mom-test-roleplay/personas/`, change every fact, keep the schema and difficulty table from `personas/README.md`, open a PR. Five ship today: café owner (1), VP Sales (2), derm office manager (3), staff engineer (4), YouTube creator (5).
 
+## Related project: mom-test-live
+
+[github.com/sreshtalluri/mom-test-live](https://github.com/sreshtalluri/mom-test-live)
+is a live conversation companion built on these skills — a "conversation contamination
+firewall" that flags the founder's own pitching, leading, and premature-solutioning
+during a real call, not answers about the customer. Pre-v0, design approved. See
+[docs/designs/live-coach-companion.md](docs/designs/live-coach-companion.md) for the
+full design.
+
 ## The framework (docs/)
 
 The skills are compressed from this. Read it to understand *why* they do what they do.
