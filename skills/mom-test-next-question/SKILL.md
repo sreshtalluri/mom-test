@@ -6,7 +6,8 @@ description: >
   "what should I ask next", "how do I follow up on this", "they said X, now what", or wants
   to dig deeper into a complaint, compliment, feature request, or vague answer. Classifies
   the statement, identifies what's still unknown, and ranks follow-ups by what the founder
-  most needs to learn.
+  most needs to learn. Also has a "live" mode for use during a call: paste the last few
+  lines with F:/C: prefixes and get four lines back (Signal, Why, Say next, Don't say).
 ---
 
 # Mom Test — Next Question
@@ -64,7 +65,7 @@ Check each; the follow-up should fill the most important gap.
 
 ```
 Statement: "…"
-Type: …            Signal strength: none / weak / problem-real / solution-wanted
+Type: …            Band: none / problem-real / solution-wanted
 Already known: …   Still missing: …
 
 Follow-ups, ranked:
@@ -78,3 +79,26 @@ Don't say: [the tempting bad follow-up, e.g. "so would a tool that did X help?"]
 
 If the user pasted several statements, handle each briefly, then say which one thread is
 most worth pulling and why.
+
+## Live mode (`/mom-test-next-question live <paste>`)
+
+For use mid-call. Input: 3–20 lines, each prefixed `F:` (founder) or `C:` (customer).
+Unprefixed lines are treated as customer; say so in `Why`. Fewer than 3 lines: fall back
+to normal mode and say so.
+
+Classify the **last `C:` line** using the table in Step 1. Band is exactly one of
+`none / problem-real / solution-wanted` (rungs 1–7 / 8–15 / 16–19). If the founder's last
+`F:` line pitched, led, or asked a would/could question, `Signal` still describes the
+customer's line but `Why` names the founder's slip in five words or fewer.
+
+If `./discovery/` exists, read `discovery/assumptions.md` and prefer a `Say next` that
+tests the riskiest assumption (first row with status `UNTESTED` or `WEAKENED`).
+
+Output exactly these four lines, nothing else:
+
+```
+Signal: <statement type> (<band>)
+Why: <one sentence>
+Say next: "<one question, about their past>"
+Don't say: "<the tempting bad question>"
+```

@@ -16,6 +16,15 @@ Input: notes, transcript, or summary of one or more customer conversations. Opti
 founder's assumptions. Be blunt; the founder needs the fluff they counted as evidence
 pointed out.
 
+## 0. If `./discovery/` exists, load it first
+
+Read `discovery/assumptions.md`. Use its `A<n>` ids everywhere below instead of inferring
+assumptions. In section 1, tag every rung-8+ fact that bears on an assumption with
+`[A<n>+]` (supports) or `[A<n>-]` (contradicts) and its rung, e.g.
+`[A3-] rung 13 "we tried the fee and turned it off"`. Also emit two lines for the
+segment table: `Top problem (unprompted): …` and `Highest rung: <n>`. Facts that bear on
+no existing assumption get a rung but no tag.
+
 ## 1. Facts vs. interpretations
 
 Two lists. **Facts** are only things the customer said or did, as close to verbatim as
@@ -92,6 +101,13 @@ none: **FAILED**. Say so. "Went well" is not a result.
 - The single most uncertain assumption, and who to talk to next to test it.
 - A follow-up message draft: thanks + one specific quote + intro request or commitment
   confirmation. Under 80 words.
+
+## 8. Record to memory
+
+If `./discovery/` exists, end with: **"Record to `discovery/`? [Y/n]"** On yes, run
+`mom-test-memory record` and report the files created or changed. If `discovery/`
+doesn't exist, offer `/mom-test-memory init` in one line. Roleplay debriefs are never
+recorded here; `mom-test-roleplay` writes only practice scores.
 
 ## Batch mode (2+ conversations)
 

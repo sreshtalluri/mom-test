@@ -15,6 +15,21 @@ Produce a prep sheet for one conversation. Fill it from what the user gave you. 
 **segment** or **stage** (discovery vs. solution) is missing and you can't infer it, ask
 for those two things only, in one message, then proceed. Never ask more than two questions.
 
+## If `./discovery/` exists, read it first
+
+1. Read `discovery/assumptions.md` and `discovery/segments.md`.
+2. **Scary question** = the riskiest assumption: the first row whose status is `UNTESTED`
+   or `WEAKENED`. Phrase it about their past, anchored to that row's kill condition. If no
+   such row exists, say the assumption list is exhausted and fall back to the behavior
+   below.
+3. **Already known** about this segment (rows in `segments.md` whose `role` matches):
+   list the facts you shouldn't re-ask, citing interview basenames. Spend the questions
+   on what's still open.
+4. Put a line at the top of the sheet: `Memory: <n> prior interviews in this segment;
+   testing A<n>`.
+
+If `discovery/` doesn't exist, don't mention it; just build the sheet.
+
 ## Rules for every question you write
 
 - Subject is **them**. Tense is **past/present**. Answer is a **fact or story**.

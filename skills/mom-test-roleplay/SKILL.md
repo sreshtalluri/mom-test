@@ -15,8 +15,28 @@ You play the customer. The user plays the founder. Afterward you grade them.
 
 ## Setup (one message)
 
-If the user didn't give an idea and a target person, ask for both in one line, or offer to
-invent a scenario. Then **privately** build a persona sheet. Do not show it until the end.
+**Persona packs.** This skill's directory has `personas/<industry>/<slug>.md` files (see
+`personas/README.md` for the schema and difficulty table). Resolve arguments:
+
+- `<industry>/<slug>` → load that file.
+- `random [industry] [difficulty]` → list `personas/*/*.md`, match industry first, then
+  nearest difficulty. If no industry match, generate a persona as below, assign it a
+  difficulty from the table, name it `generated:<role-slug>`, and say so.
+- Nothing → ask for the founder's idea and target person in one line, or offer `random`.
+
+Never echo a persona file's contents before the debrief.
+
+**Difficulty table** (identical to `personas/README.md`):
+
+| d | Behavior |
+|---|---|
+| 1 | Has the problem, answers directly, is the decision-maker |
+| 2 | Has the problem, needs one anchor ("when did that last happen?") to get specific |
+| 3 | Tolerated problem, one tangent per turn, real top problem is adjacent to the assumed one |
+| 4 | Buried problem, flatters when pitched, not the decision-maker |
+| 5 | No real problem, warm, non-decision-maker, volunteers a feature idea |
+
+If no pack was loaded, **privately** build a persona sheet. Do not show it until the end.
 
 Persona sheet must include:
 - Role, company/context, tenure, tools used.
@@ -72,5 +92,20 @@ Run up to ~12 exchanges, or until the user says "end", "stop", or "debrief".
    problem is real for this person.
 7. **One drill** for next time, targeted at their lowest category.
 
-Offer to run again with a harder persona (a busier person, a non-decision-maker, someone
-who doesn't have the problem, or someone who's very flattering).
+8. **Save the score.** If `./discovery/practice/scores.md` exists, append one row. If it
+   doesn't, ask **"Save practice scores to `discovery/practice/`? [Y/n]"** and on yes
+   create the file with this exact header, then append. Full `mom-test-memory init` is
+   not required. Roleplay never writes anywhere else in `discovery/`.
+
+   ```
+   # Practice scores
+
+   Append only. Written by `mom-test-roleplay`. Read by `mom-test-league`.
+
+   | date | persona | difficulty | total | lowest two | highest rung |
+   |---|---|---|---|---|---|
+   ```
+   Row: `| YYYY-MM-DD | <industry>/<slug> or generated:<role-slug> | <1-5> | <total> | <cat>, <cat> | <rung> |`
+
+Offer `/mom-test-league` to see the trend, or run again with a harder persona (one
+difficulty up, or a non-decision-maker, or someone who doesn't have the problem).

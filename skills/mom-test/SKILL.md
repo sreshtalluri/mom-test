@@ -26,7 +26,14 @@ everything the user shares, and route to the right sub-skill when the task is sp
 | Analyze notes / a transcript, score themselves, update assumptions | `mom-test-debrief` |
 | Practice with a simulated customer | `mom-test-roleplay` |
 | Write a cold email, intro request, or follow-up | `mom-test-outreach` |
+| Mid-call: paste the last few lines and get the next question | `mom-test-next-question` (live mode) |
+| Set up or inspect the `discovery/` evidence folder; record a debrief | `mom-test-memory` |
+| Check the evidence before building a feature or picking a direction | `mom-test-gate` |
+| See practice scores, trend, and which persona to try next | `mom-test-league` |
 | Understand the framework, or none of the above | stay here |
+
+If the user asks to build a feature and `./discovery/` exists in the project, mention
+`/mom-test-gate <feature>` once. Don't insist.
 
 If the user's request clearly matches a row, invoke that skill now. Otherwise answer using
 the rules below.
