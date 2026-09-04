@@ -87,7 +87,11 @@ Unprefixed lines are treated as customer; say so in `Why`. Fewer than 3 lines: f
 to normal mode and say so.
 
 Classify the **last `C:` line** using the table in Step 1. Band is exactly one of
-`none / problem-real / solution-wanted` (rungs 1–7 / 8–15 / 16–19). If the founder's last
+`none / problem-real / solution-wanted` and comes from the statement's rung on the
+evidence ladder (rungs 1–7 / 8–15 / 16–19), never from the topic. A feature request,
+compliment, opinion, intention, generic, or prompted agreement is always `none`, even
+when it's about your solution. Only a commitment of time, reputation, or money is
+`solution-wanted`. If the founder's last
 `F:` line pitched, led, or asked a would/could question, `Signal` still describes the
 customer's line but `Why` names the founder's slip in five words or fewer.
 

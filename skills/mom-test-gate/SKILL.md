@@ -48,7 +48,11 @@ For each mapped `A<n>`, grep `interviews/` for `[A<n>+]` and `[A<n>-]` tags.
 
 ## 4. Verdict, evaluated in this order on the mapped assumption with the fewest qualifying interviews
 
-1. Any mapped assumption is `KILLED` → **run 3 conversations first**, quoting the kill.
+1. A mapped assumption is `KILLED` **and the request only works if it were true** →
+   **run 3 conversations first**, quoting the kill. If the kill merely informs the
+   request (for example "nobody has tried a tool" is dead, but the request is to pursue
+   the problem those tools failed at), don't count it against the verdict; report it as
+   context and say how it sharpens the wedge.
 2. Qualifying ≥ 3 and (problem-stage, or solution-stage with ≥ 1 rung-16+ fact) → **build**.
 3. Qualifying ≥ 3, solution-stage, no rung-16+ fact → **build as experiment** (the problem
    is real; nobody has committed to this solution yet).
