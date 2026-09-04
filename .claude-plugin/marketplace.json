@@ -1,0 +1,14 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "mom-test",
+  "description": "The Mom Test as a set of founder skills for customer discovery.",
+  "owner": { "name": "Sreshta Talluri", "url": "https://github.com/sreshtalluri" },
+  "plugins": [
+    {
+      "name": "mom-test",
+      "description": "Prep, run, and debrief customer conversations that produce facts instead of compliments.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}
