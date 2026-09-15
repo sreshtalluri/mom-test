@@ -18,22 +18,46 @@ ACTION="install"
 while [ $# -gt 0 ]; do
   case "$1" in
     --uninstall) ACTION="uninstall" ;;
-    --dir) shift; DST="$1" ;;
+    --dir)
+      if [ $# -lt 2 ] || [ -z "$2" ]; then
+        echo "--dir requires a directory path" >&2; exit 1
+      fi
+      shift; DST="$1" ;;
     *) echo "Unknown argument: $1" >&2; exit 1 ;;
   esac
   shift
 done
-mkdir -p "$DST"
+# Validate the whole operation before changing any installed skill. Never replace
+# an unrelated file, directory, or symlink, even when its name matches a skill.
 for d in "$SRC"/*/; do
   name="$(basename "$d")"
   fm="$(sed -n 's/^name:[[:space:]]*//p' "$d/SKILL.md" | head -1)"
   if [ "$fm" != "$name" ]; then
     echo "ERROR: $d/SKILL.md frontmatter name '$fm' != directory '$name'" >&2; exit 1
   fi
+  if [ -e "$DST/$name" ] || [ -L "$DST/$name" ]; then
+    if [ ! -L "$DST/$name" ] || [ "$(readlink "$DST/$name")" != "$d" ]; then
+      if [ "$ACTION" = "install" ]; then
+        echo "ERROR: refusing to replace unrelated path $DST/$name" >&2; exit 1
+      fi
+    fi
+  fi
+done
+if [ "$ACTION" = "install" ]; then
+  mkdir -p "$DST"
+fi
+for d in "$SRC"/*/; do
+  name="$(basename "$d")"
   if [ "$ACTION" = "uninstall" ]; then
-    rm -f "$DST/$name" && echo "removed  $name"
+    if [ -L "$DST/$name" ] && [ "$(readlink "$DST/$name")" = "$d" ]; then
+      rm "$DST/$name" && echo "removed  $name"
+    else
+      echo "skipped  $name (not installed by this checkout)"
+    fi
+  elif [ -L "$DST/$name" ]; then
+    echo "already  $name -> $DST/$name"
   else
-    ln -sfn "$d" "$DST/$name" && echo "linked   $name -> $DST/$name"
+    ln -s "$d" "$DST/$name" && echo "linked   $name -> $DST/$name"
   fi
 done
 if [ "$ACTION" = "uninstall" ]; then

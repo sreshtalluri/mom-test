@@ -9,6 +9,10 @@ the room, the agent makes you harder to fool, and the evidence compounds in plai
 
 ## 60 seconds
 
+![Six-screen walkthrough: remember, prepare, catch bad questions, debrief, record evidence, and practice.](docs/demo/walkthrough.gif)
+
+*Scripted illustration with fictional data. The readable walkthrough follows.*
+
 ```
 > /mom-test-memory init --example
   discovery/ created with sample data: 4 interviews, 5 assumptions, 1 decision, 2 practice scores.
@@ -116,14 +120,17 @@ Rules that keep it honest: assumption IDs never change; evidence lives only in i
 
 ## Contribute a persona
 
-Copy the closest file in `skills/mom-test-roleplay/personas/`, change every fact, keep the schema and difficulty table from `personas/README.md`, open a PR. Five ship today: café owner (1), VP Sales (2), derm office manager (3), staff engineer (4), YouTube creator (5).
+Copy the closest file in `skills/mom-test-roleplay/personas/`, change every fact, keep the schema and difficulty table from `personas/README.md`, open a PR. Five ship today: café owner (1), VP Sales (2), derm office manager (3), staff engineer (4), YouTube creator (5). See [CONTRIBUTING.md](CONTRIBUTING.md) for the submission steps and verification checklist.
 
 ## Related project: mom-test-live
 
 [github.com/sreshtalluri/mom-test-live](https://github.com/sreshtalluri/mom-test-live)
 is a live conversation companion built on these skills — a "conversation contamination
 firewall" that flags the founder's own pitching, leading, and premature-solutioning
-during a real call, not answers about the customer. Pre-v0, design approved. See
+during a real call, not answers about the customer. Its v0 after-call importer is
+implemented: consent-gated local audio transcription, text/caption import, private
+output, and the exact debrief → memory hand-off. The live overlay follows real v0
+usage. See the companion's STATUS.md for verification and release progress, and
 [docs/designs/live-coach-companion.md](docs/designs/live-coach-companion.md) for the
 full design.
 
